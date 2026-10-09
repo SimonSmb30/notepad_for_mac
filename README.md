@@ -28,6 +28,7 @@ Notepad is a small plain-text editor for macOS, modelled on the Windows Notepad:
 - Tabs in the title bar, with a button for a new tab and a close button on each tab.
 - Several windows. A tab can be dragged out of the tab bar to become its own window.
 - Tab search: a dropdown listing the open tabs of all windows and the files you closed recently, with a search field.
+- Opens files from Finder: a double-click or "Open With" adds the file as a tab to the open window.
 - Find, Replace, Go to Line, and inserting the current time and date.
 - Zoom in and out without changing the font size setting.
 - Four appearance modes: Light, Dark, Windows (white with a light blue tab bar) and Custom Colors.
@@ -39,7 +40,7 @@ Notepad is a small plain-text editor for macOS, modelled on the Windows Notepad:
 
 A ready-built app is attached to the [latest release](https://github.com/SimonSmb30/notepad_for_mac/releases/latest).
 
-1. Download `Notepad-1.0.zip` from the release page and unzip it (double-click the file).
+1. Download `Notepad-1.1.zip` from the release page and unzip it (double-click the file).
 2. Move `Notepad.app` into the Applications folder.
 3. Start it. The first start is blocked, see below.
 
@@ -279,7 +280,7 @@ All source files are in `Notepad/`. The Xcode project picks up every file in tha
 
 | File | Contents |
 | --- | --- |
-| `NotepadApp.swift` | App entry point: the window scene, the settings scene, and the app delegate that handles the Close Tab shortcut and quitting. |
+| `NotepadApp.swift` | App entry point: the window scene, the settings scene, and the app delegate that handles the Close Tab shortcut, files passed from Finder, and quitting. |
 | `Workspace.swift` | State shared by all windows: the list of windows, appearance, font, word wrap, zoom, shortcuts and the recently closed files. Reads and writes the preferences. |
 | `WindowStore.swift` | State of one window: its tabs and the selected tab. Opening, saving, closing, tearing off a tab, Find, Go to Line, Time/Date, and the positioning of the window buttons. |
 | `TextDocument.swift` | One tab: file URL, text, and whether it has unsaved changes. |
@@ -295,6 +296,8 @@ All source files are in `Notepad/`. The Xcode project picks up every file in tha
 | `Theme.swift` | Appearance modes, the Windows color palette and color helpers. |
 | `Localizable.xcstrings` | The German translations. English is the source language. |
 | `Assets.xcassets` | The app icon. |
+
+`Notepad-Info.plist` in the project root lists the file types Notepad offers to open. The rest of the `Info.plist` is generated from the build settings.
 
 Comments in the source code are written in German.
 
