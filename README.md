@@ -7,8 +7,9 @@ Notepad is a small plain-text editor for macOS, modelled on the Windows Notepad:
 ## Contents
 
 - [Features](#features)
+- [Download](#download)
 - [Requirements](#requirements)
-- [Getting it running](#getting-it-running)
+- [Building from source](#building-from-source)
 - [Using Notepad](#using-notepad)
   - [The window](#the-window)
   - [Tabs and windows](#tabs-and-windows)
@@ -34,14 +35,36 @@ Notepad is a small plain-text editor for macOS, modelled on the Windows Notepad:
 - Keyboard shortcuts for 15 commands can be reassigned.
 - English and German user interface.
 
+## Download
+
+A ready-built app is attached to the [latest release](https://github.com/SimonSmb30/notepad_for_mac/releases/latest).
+
+1. Download `Notepad-1.0.zip` from the release page and unzip it (double-click the file).
+2. Move `Notepad.app` into the Applications folder.
+3. Start it. The first start is blocked, see below.
+
+The app is not notarized by Apple, because that requires a paid developer account. macOS therefore refuses the first start with a message that it could not verify the app. To allow it:
+
+1. Close the message with "Done".
+2. Open System Settings > Privacy & Security and scroll down to the "Security" section.
+3. Next to the note that "Notepad" was blocked, click "Open Anyway" and confirm.
+
+This is needed once. Alternatively, remove the download mark in Terminal before the first start:
+
+```sh
+xattr -dr com.apple.quarantine /Applications/Notepad.app
+```
+
+The download runs on Macs with Apple silicon and with Intel processors. It was built and tried on an Apple silicon Mac; the Intel part has not been tried on an Intel Mac.
+
+If you would rather not run an app that Apple has not checked, build it yourself as described under [Building from source](#building-from-source).
+
 ## Requirements
 
 - macOS 15.0 or later (the deployment target of the project).
-- Xcode to build it. The project was created and is built with Xcode 27.0. Its project file format needs at least Xcode 16; versions between 16 and 27 have not been tried.
+- Only for building from source: Xcode. The project was created and is built with Xcode 27.0. Its project file format needs at least Xcode 16; versions between 16 and 27 have not been tried.
 
-There is no prebuilt download. You build the app yourself from this repository.
-
-## Getting it running
+## Building from source
 
 ### With Xcode
 
@@ -80,7 +103,7 @@ cp -R "<BUILT_PRODUCTS_DIR>/Notepad.app" /Applications/
 
 ### About code signing
 
-The project is set to "Sign to Run Locally", which is an ad-hoc signature without a developer certificate. That is enough to run the app on the Mac that built it. The app is not notarized, so a copy passed on to another Mac will be stopped by Gatekeeper. Build it on each Mac where you want to use it, or change the signing settings in Xcode to your own developer team.
+The project is set to "Sign to Run Locally", which is an ad-hoc signature without a developer certificate. That is enough to run the app on the Mac that built it without any further step. The app is not notarized, so a copy passed on to another Mac, including the release download, is stopped by Gatekeeper until you allow it as described under [Download](#download). To avoid that for your own copies, change the signing settings in Xcode to your own developer team.
 
 ## Using Notepad
 
