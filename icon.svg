@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F4F4F4"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8ED6EC"/>
+      <stop offset="1" stop-color="#61c3e1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Hintergrund: Mac-Icon-Form mit abgerundeten Ecken -->
+  <rect x="64" y="64" width="896" height="896" rx="200" ry="200" fill="url(#bg)"/>
+
+  <g transform="translate(512 512) scale(1.1) translate(-512 -512)">
+  <!-- Notizblock -->"
+  <rect x="262" y="232" width="500" height="560" rx="36" ry="36" fill="url(#paper)"/>
+
+  <!-- Spiralbindung -->
+  <g fill="#047093">
+    <rect x="330" y="208" width="44" height="60" rx="22"/>
+    <rect x="438" y="208" width="44" height="60" rx="22"/>
+    <rect x="546" y="208" width="44" height="60" rx="22"/>
+    <rect x="654" y="208" width="44" height="60" rx="22"/>
+  </g>
+
+  <!-- Textlinien, alle gleich breit -->
+  <g fill="#047093">
+    <rect x="312" y="352" width="400" height="56" rx="22"/>
+    <rect x="312" y="484" width="400" height="56" rx="22"/>
+    <rect x="312" y="616" width="400" height="56" rx="22"/>
+  </g>
+  </g>
+</svg>

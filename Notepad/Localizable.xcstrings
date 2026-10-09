@@ -1,0 +1,688 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@ is already assigned to “%@”." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ ist schon für „%2$@“ vergeben."
+          }
+        }
+      }
+    },
+    "%@ • Edited" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ • geändert"
+          }
+        }
+      }
+    },
+    "%@…" : {
+      "comment" : "Menu item that opens a dialog: command title followed by an ellipsis.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ …"
+          }
+        }
+      }
+    },
+    "%lld pt" : {
+      "shouldTranslate" : false
+    },
+    "Actual Size" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Originalgröße"
+          }
+        }
+      }
+    },
+    "Also press ⌘, ⌃, or ⌥." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drück zusätzlich ⌘, ⌃ oder ⌥."
+          }
+        }
+      }
+    },
+    "Appearance" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darstellung"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abbrechen"
+          }
+        }
+      }
+    },
+    "Change Shortcut" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kürzel ändern"
+          }
+        }
+      }
+    },
+    "Close" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schließen"
+          }
+        }
+      }
+    },
+    "Close Tab" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tab schließen"
+          }
+        }
+      }
+    },
+    "Copy" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopieren"
+          }
+        }
+      }
+    },
+    "Custom Colors" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eigene Farben"
+          }
+        }
+      }
+    },
+    "Cut" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ausschneiden"
+          }
+        }
+      }
+    },
+    "Dark" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dunkel"
+          }
+        }
+      }
+    },
+    "Do you want to save the changes to “%@”?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Möchtest du die Änderungen an „%@“ speichern?"
+          }
+        }
+      }
+    },
+    "Don’t Save" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht speichern"
+          }
+        }
+      }
+    },
+    "Exit Full Screen" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vollbild beenden"
+          }
+        }
+      }
+    },
+    "File" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datei"
+          }
+        }
+      }
+    },
+    "Find" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suchen"
+          }
+        }
+      }
+    },
+    "Font" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schriftart"
+          }
+        }
+      }
+    },
+    "Font Size" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schriftgröße"
+          }
+        }
+      }
+    },
+    "Go" : {
+      "comment" : "Default button of the Go to Line dialog.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gehe zu"
+          }
+        }
+      }
+    },
+    "Go to Line" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gehe zu Zeile"
+          }
+        }
+      }
+    },
+    "Hide" : {
+      "comment" : "Fixed system shortcut ⌘H (conflict check only).",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ausblenden"
+          }
+        }
+      }
+    },
+    "Keyboard Shortcuts" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tastenkürzel"
+          }
+        }
+      }
+    },
+    "Light" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hell"
+          }
+        }
+      }
+    },
+    "Line Number" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeilennummer"
+          }
+        }
+      }
+    },
+    "Menu Bar" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menüzeile"
+          }
+        }
+      }
+    },
+    "Minimize" : {
+      "comment" : "Fixed system shortcut ⌘M (conflict check only).",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Im Dock ablegen"
+          }
+        }
+      }
+    },
+    "Mode" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modus"
+          }
+        }
+      }
+    },
+    "New Tab" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neuer Tab"
+          }
+        }
+      }
+    },
+    "New Window" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neues Fenster"
+          }
+        }
+      }
+    },
+    "No Results" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Treffer"
+          }
+        }
+      }
+    },
+    "Open" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffnen"
+          }
+        }
+      }
+    },
+    "Open Tabs" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geöffnete Tabs"
+          }
+        }
+      }
+    },
+    "Paste" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einfügen"
+          }
+        }
+      }
+    },
+    "Press Shortcut…" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasten drücken …"
+          }
+        }
+      }
+    },
+    "Print" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drucken"
+          }
+        }
+      }
+    },
+    "Quit" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beenden"
+          }
+        }
+      }
+    },
+    "Recently Closed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kürzlich geschlossen"
+          }
+        }
+      }
+    },
+    "Redo" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wiederholen"
+          }
+        }
+      }
+    },
+    "Remove from List" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aus der Liste entfernen"
+          }
+        }
+      }
+    },
+    "Replace" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ersetzen"
+          }
+        }
+      }
+    },
+    "Restore Defaults" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard wiederherstellen"
+          }
+        }
+      }
+    },
+    "Save" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speichern"
+          }
+        }
+      }
+    },
+    "Save As" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speichern unter"
+          }
+        }
+      }
+    },
+    "Search Tabs" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabs suchen"
+          }
+        }
+      }
+    },
+    "Select All" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles auswählen"
+          }
+        }
+      }
+    },
+    "Set by macOS" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Von macOS vorgegeben"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen"
+          }
+        }
+      }
+    },
+    "Space" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leertaste"
+          }
+        }
+      }
+    },
+    "Tab Bar" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tab-Leiste"
+          }
+        }
+      }
+    },
+    "Tab Search" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tab-Suche"
+          }
+        }
+      }
+    },
+    "Text" : {
+      "comment" : "Settings: section title.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text"
+          }
+        }
+      }
+    },
+    "Text Area" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Textfläche"
+          }
+        }
+      }
+    },
+    "Text Color" : {
+      "comment" : "Settings, custom colours: colour of the editor text.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schrift"
+          }
+        }
+      }
+    },
+    "Time/Date" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uhrzeit/Datum"
+          }
+        }
+      }
+    },
+    "Undo" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rückgängig"
+          }
+        }
+      }
+    },
+    "Unsaved" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht gespeichert"
+          }
+        }
+      }
+    },
+    "Unsaved • Edited" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht gespeichert • geändert"
+          }
+        }
+      }
+    },
+    "Untitled" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unbenannt"
+          }
+        }
+      }
+    },
+    "V%@ a Simon Schäfer Application" : {
+      "shouldTranslate" : false
+    },
+    "Word Wrap" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeilenumbruch"
+          }
+        }
+      }
+    },
+    "Your changes will be lost if you don’t save them." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ohne Speichern gehen deine Änderungen verloren."
+          }
+        }
+      }
+    },
+    "Zoom In" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vergrößern"
+          }
+        }
+      }
+    },
+    "Zoom Out" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verkleinern"
+          }
+        }
+      }
+    },
+    "“%@” could not be read as text." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ konnte nicht als Text gelesen werden."
+          }
+        }
+      }
+    },
+    "“%@” could not be saved. %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%1$@“ konnte nicht gespeichert werden. %2$@"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
