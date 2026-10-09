@@ -5,14 +5,20 @@ import SwiftUI
 struct NotepadApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @State private var workspace = Workspace.shared
+    @Environment(\.openWindow) private var openWindow
 
     var body: some Scene {
+        // Schon vor dem ersten Fenster nötig: Beim Start per Datei aus dem Finder
+        // legt SwiftUI keines an.
+        let _ = workspace.openWindowAction = openWindow
         WindowGroup(id: Workspace.windowGroupID) {
             WindowRootView()
         }
         .windowStyle(.hiddenTitleBar)
         .defaultSize(width: 760, height: 520)
         .restorationBehavior(.disabled)
+        // Dateien aus dem Finder landen als Tab im vorhandenen Fenster statt in einem neuen.
+        .handlesExternalEvents(matching: [])
         .commands {
             AppCommands(shortcuts: workspace.shortcuts)
         }
@@ -46,6 +52,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             }
             return handled ? nil : event
         }
+    }
+
+    /// Dateien, die der Finder per Doppelklick oder „Öffnen mit“ übergibt.
+    func application(_ application: NSApplication, open urls: [URL]) {
+        Workspace.shared.open(urls)
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {

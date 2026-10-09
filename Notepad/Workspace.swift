@@ -19,6 +19,8 @@ final class Workspace {
 
     @ObservationIgnored private(set) var windows: [WindowStore] = []
     @ObservationIgnored private var pendingStores: [WindowStore] = []
+    /// Dateien aus dem Finder, die beim Start eintreffen, bevor ein Fenster existiert.
+    @ObservationIgnored private var pendingURLs: [URL] = []
     @ObservationIgnored var openWindowAction: OpenWindowAction?
 
     private(set) var font: NSFont
@@ -106,7 +108,25 @@ final class Workspace {
     func claimStore() -> WindowStore {
         let store = pendingStores.isEmpty ? WindowStore() : pendingStores.removeFirst()
         windows.append(store)
+        if !pendingURLs.isEmpty {
+            // Erst nach dem Aufbau der Ansicht, die den Zustand gerade anfordert.
+            DispatchQueue.main.async { self.open([]) }
+        }
         return store
+    }
+
+    /// Öffnet vom Finder übergebene Dateien als Tabs im aktiven Fenster.
+    func open(_ urls: [URL]) {
+        pendingURLs += urls
+        guard let store = activeStore ?? windows.last else {
+            // Das neue Fenster holt sich die wartenden Dateien über `claimStore`.
+            newWindow()
+            return
+        }
+        let urls = pendingURLs
+        pendingURLs = []
+        urls.forEach(store.open)
+        store.window?.makeKeyAndOrderFront(nil)
     }
 
     /// Fenster, die tatsächlich auf dem Bildschirm existieren.
