@@ -186,6 +186,8 @@ Undo, Redo, Cut, Copy, Paste and Select All work as in any Mac app. Each tab kee
 
 For files Notepad can render, a button appears at the right end of the menu row. It switches the tab between the text (`</>` icon) and the preview (eye icon). The text cannot be edited while the preview is shown. Every tab starts with the text; for other files and for untitled tabs the button is hidden.
 
+<img src="docs/screenshots/preview-markdown.png" width="760" alt="Preview of a Markdown file with a task list, a table and a code block">
+
 The preview is available for these files:
 
 | Files | Shown as |
@@ -200,6 +202,8 @@ The preview is available for these files:
 | `.dot`, `.gv` | A Graphviz diagram. |
 | `.diff`, `.patch` | Added lines in green, removed lines in red. |
 
+<img src="docs/screenshots/preview-table.png" width="760" alt="Preview of a CSV file as a table with numbered rows">
+
 The colors and the font of the preview follow the appearance mode and the font setting; HTML files keep their own look. The preview is created when you switch to it and shows the text as it is at that moment, saved or not. A file that cannot be parsed, such as broken JSON, shows the error message instead. Links to web pages open in the browser.
 
 The preview can only read files in the folder of the previewed file and its subfolders, and by default it loads nothing from the internet. Two switches in the settings change what HTML files may do, see [Preview settings](#preview-settings).
@@ -208,7 +212,7 @@ The preview can only read files in the folder of the previewed file and its subf
 
 Open the settings with "Settings" in the menu row of the window, with Notepad > Settings in the Mac menu bar, or with ⌘,. Every change takes effect immediately in all windows and is saved.
 
-<img src="docs/screenshots/settings.png" width="500" alt="Settings window with the sections Appearance, Text and Keyboard Shortcuts">
+<img src="docs/screenshots/settings.png" width="500" alt="Settings window with the sections Appearance, Text, Preview and Keyboard Shortcuts">
 
 #### Appearance
 
