@@ -21,9 +21,15 @@ struct MenuRowView: View {
             }
             .buttonStyle(.plain)
             Spacer(minLength: 0)
+            if let document = windowStore.current, document.availableModes.count > 1 {
+                PreviewSwitch(document: document)
+            }
         }
-        .padding(.horizontal, 6)
-        .frame(height: 28)
+        // Links beginnt „Datei“ auf derselben Linie wie der Text darunter (Einzug 8 + 1),
+        // rechts hat der Knopf denselben Abstand wie nach oben und unten.
+        .padding(.leading, 1)
+        .padding(.trailing, PreviewSwitch.margin)
+        .frame(height: PreviewSwitch.side + 2 * PreviewSwitch.margin)
         .background(Color(nsColor: workspace.menuBackground))
     }
 
@@ -35,5 +41,31 @@ struct MenuRowView: View {
             .menuIndicator(.hidden)
             .fixedSize()
             .padding(.horizontal, 8)
+    }
+}
+
+/// Wechselt zwischen Text und Vorschau. Das Symbol zeigt die aktuelle Ansicht.
+private struct PreviewSwitch: View {
+    let document: TextDocument
+    @State private var isHovered = false
+
+    static let side: CGFloat = 24
+    static let margin: CGFloat = 4
+
+    var body: some View {
+        let mode = document.effectiveMode
+        Button {
+            document.cycleViewMode()
+        } label: {
+            Image(systemName: mode.symbol)
+                .font(.system(size: 12, weight: .medium))
+                .frame(width: Self.side, height: Self.side)
+                .background(Color.primary.opacity(isHovered ? 0.1 : 0), in: RoundedRectangle(cornerRadius: 6))
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .onHover { isHovered = $0 }
+        .help(mode.title)
+        .accessibilityLabel(mode.title)
     }
 }

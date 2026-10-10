@@ -277,6 +277,16 @@
         }
       }
     },
+    "Load Content from the Internet" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inhalte aus dem Internet laden"
+          }
+        }
+      }
+    },
     "Menu Bar" : {
       "localizations" : {
         "de" : {
@@ -378,6 +388,16 @@
         }
       }
     },
+    "Preview" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorschau"
+          }
+        }
+      }
+    },
     "Print" : {
       "localizations" : {
         "de" : {
@@ -444,6 +464,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Standard wiederherstellen"
+          }
+        }
+      }
+    },
+    "Run Scripts in HTML Files" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skripte in HTML-Dateien ausführen"
           }
         }
       }

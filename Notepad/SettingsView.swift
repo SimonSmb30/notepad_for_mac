@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Einstellungen (⌘,): Darstellung, Text und eine Übersicht der Tastenkürzel.
+/// Einstellungen (⌘,): Darstellung, Text, Vorschau und eine Übersicht der Tastenkürzel.
 struct SettingsView: View {
     @Environment(Workspace.self) private var workspace
 
@@ -101,6 +101,25 @@ struct SettingsView: View {
                     Toggle("Word Wrap", isOn: Binding(
                         get: { workspace.wordWrap },
                         set: { workspace.setWordWrap($0) }
+                    ))
+                    .labelsHidden()
+                    .toggleStyle(.switch)
+                }
+            }
+
+            section("Preview") {
+                row("Run Scripts in HTML Files") {
+                    Toggle("Run Scripts in HTML Files", isOn: Binding(
+                        get: { workspace.previewAllowsScripts },
+                        set: { workspace.setPreviewAllowsScripts($0) }
+                    ))
+                    .labelsHidden()
+                    .toggleStyle(.switch)
+                }
+                row("Load Content from the Internet") {
+                    Toggle("Load Content from the Internet", isOn: Binding(
+                        get: { workspace.previewAllowsNetwork },
+                        set: { workspace.setPreviewAllowsNetwork($0) }
                     ))
                     .labelsHidden()
                     .toggleStyle(.switch)

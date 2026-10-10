@@ -1,0 +1,128 @@
+/* Aussehen der Vorschau. Die Farben kommen als Variablen aus theme.css,
+   das die App passend zur gewählten Darstellung erzeugt. */
+:root {
+    --line: color-mix(in srgb, var(--text) 18%, transparent);
+    --soft: color-mix(in srgb, var(--text) 7%, transparent);
+    --mono: ui-monospace, "SF Mono", Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+    margin: 0;
+    padding: 20px 24px 40px;
+    background: var(--bg);
+    color: var(--text);
+    font: var(--size)/1.55 var(--font), -apple-system, sans-serif;
+    overflow-wrap: break-word;
+}
+a { color: var(--function); }
+img, svg, video { max-width: 100%; }
+pre, code, kbd { font-family: var(--mono); font-size: 0.92em; }
+pre {
+    margin: 1em 0;
+    padding: 10px 12px;
+    background: var(--soft);
+    border-radius: 6px;
+    overflow-x: auto;
+    line-height: 1.45;
+}
+code { background: var(--soft); padding: 0.1em 0.35em; border-radius: 4px; }
+pre code { background: none; padding: 0; font-size: 1em; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid var(--line); padding: 4px 10px; text-align: left; vertical-align: top; }
+th { background: var(--soft); font-weight: 600; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 1.5em 0; }
+
+.error {
+    margin: 0 auto;
+    max-width: 820px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--number);
+    border-radius: 6px;
+}
+.error strong { display: block; margin-bottom: 4px; }
+.error pre { margin: 8px 0 0; white-space: pre-wrap; }
+.note { margin: 12px 0 0; color: var(--comment); font-size: 0.92em; }
+
+/* Markdown und Notebook */
+.prose { max-width: 820px; margin: 0 auto; }
+.prose > :first-child { margin-top: 0; }
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 { line-height: 1.25; margin: 1.5em 0 0.5em; }
+.prose h1 { font-size: 1.9em; }
+.prose h2 { font-size: 1.45em; }
+.prose h3 { font-size: 1.2em; }
+.prose h1, .prose h2 { padding-bottom: 0.25em; border-bottom: 1px solid var(--line); }
+.prose p, .prose ul, .prose ol, .prose blockquote, .prose table { margin: 0 0 1em; }
+.prose ul, .prose ol { padding-left: 1.6em; }
+.prose li + li { margin-top: 0.2em; }
+.prose blockquote { padding: 0 1em; border-left: 3px solid var(--line); color: var(--comment); }
+.prose table { display: block; overflow-x: auto; }
+.prose li.task { list-style: none; margin-left: -1.4em; }
+.prose li.task input { margin: 0 0.5em 0 0; }
+.math-block { display: block; margin: 1em 0; text-align: center; overflow-x: auto; }
+.mermaid, .graph { margin: 1em 0; text-align: center; overflow-x: auto; }
+.mermaid svg, .graph svg { height: auto; }
+
+/* highlight.js in Codeblöcken */
+.hljs-comment, .hljs-quote, .hljs-doctag { color: var(--comment); }
+.hljs-keyword, .hljs-name, .hljs-section, .hljs-literal { color: var(--keyword); }
+.hljs-string, .hljs-regexp, .hljs-link, .hljs-addition { color: var(--string); }
+.hljs-number, .hljs-symbol, .hljs-code, .hljs-deletion, .hljs-char { color: var(--number); }
+.hljs-title { color: var(--function); }
+.hljs-type, .hljs-built_in, .hljs-title.class_, .hljs-selector-tag, .hljs-selector-class,
+.hljs-selector-id, .hljs-selector-pseudo, .hljs-selector-attr { color: var(--type); }
+.hljs-attr, .hljs-attribute, .hljs-property, .hljs-variable, .hljs-template-variable,
+.hljs-bullet, .hljs-meta { color: var(--attribute); }
+.hljs-variable.language_ { color: var(--keyword); }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 600; }
+
+/* Tabelle (CSV) */
+.sheet { font-family: var(--mono); font-size: 0.92em; white-space: nowrap; }
+.sheet th { position: sticky; top: 0; background: color-mix(in srgb, var(--text) 10%, var(--bg)); z-index: 1; }
+.sheet td.n, .sheet th.n { text-align: right; }
+.sheet .row { color: var(--comment); text-align: right; user-select: none; background: var(--soft); }
+body.wide { padding: 0 0 24px; }
+body.wide .note { padding: 0 12px; }
+
+/* Baum (JSON, YAML, TOML, XML) */
+.tree { font-family: var(--mono); font-size: 0.95em; line-height: 1.6; }
+.tree details, .tree .leaf { margin-left: 1.4em; }
+.tree > details, .tree > .leaf { margin-left: 0; }
+.tree .leaf { padding-left: 1.05em; white-space: pre-wrap; }
+.tree summary { cursor: default; white-space: nowrap; }
+.tree summary:hover { background: var(--soft); }
+.tree .key { color: var(--attribute); }
+.tree .tag { color: var(--keyword); }
+.tree .string { color: var(--string); }
+.tree .number { color: var(--number); }
+.tree .literal { color: var(--keyword); }
+.tree .count { color: var(--comment); }
+
+/* Notebook */
+.cell { margin: 0 0 1.2em; }
+.cell > :first-child { margin-top: 0; }
+.cell .label { color: var(--comment); font: 0.85em var(--mono); margin-bottom: 2px; }
+.cell pre { margin: 0 0 6px; }
+.cell .output pre { background: none; padding: 0 12px; }
+.cell .output.failed pre { color: var(--number); }
+
+/* Diff */
+.diff { font-family: var(--mono); font-size: 0.92em; line-height: 1.5; }
+.diff div { white-space: pre-wrap; padding: 0 10px; min-height: 1.5em; }
+/* Grün und Rot sind hier fest, unabhängig von den Tönen der Darstellung. */
+.diff .add { background: rgba(46, 160, 67, 0.28); }
+.diff .del { background: rgba(248, 81, 73, 0.28); }
+.diff .hunk { color: var(--attribute); background: var(--soft); }
+.diff .meta { color: var(--comment); font-weight: 600; }
+
+/* SVG */
+.canvas {
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+    border-radius: 8px;
+    background: repeating-conic-gradient(#e4e4e4 0 25%, #fff 0 50%) 0 0 / 20px 20px;
+}
+.canvas img { min-width: 64px; }

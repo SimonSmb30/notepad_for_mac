@@ -16,10 +16,12 @@ Notepad is a small plain-text editor for macOS, modelled on the Windows Notepad:
   - [Tab search](#tab-search)
   - [Opening and saving files](#opening-and-saving-files)
   - [Editing commands](#editing-commands)
+  - [Preview](#preview)
   - [Settings](#settings)
   - [Language](#language)
 - [Keyboard shortcuts](#keyboard-shortcuts)
 - [Project structure](#project-structure)
+- [Third-party libraries](#third-party-libraries)
 - [License](#license)
 
 ## Features
@@ -31,6 +33,7 @@ Notepad is a small plain-text editor for macOS, modelled on the Windows Notepad:
 - Opens files from Finder: a double-click or "Open With" adds the file as a tab to the open window.
 - Find, Replace, Go to Line, and inserting the current time and date.
 - Zoom in and out without changing the font size setting.
+- A rendered preview for Markdown, HTML, SVG, CSV, JSON, YAML, TOML, XML, Jupyter notebooks, Mermaid, Graphviz and diffs, one click away from the text.
 - Four appearance modes: Light, Dark, Windows (white with a light blue tab bar) and Custom Colors.
 - Selectable font and font size, word wrap on or off.
 - Keyboard shortcuts for 15 commands can be reassigned.
@@ -40,7 +43,7 @@ Notepad is a small plain-text editor for macOS, modelled on the Windows Notepad:
 
 A ready-built app is attached to the [latest release](https://github.com/SimonSmb30/notepad_for_mac/releases/latest).
 
-1. Download `Notepad-1.1.zip` from the release page and unzip it (double-click the file).
+1. Download `Notepad-1.2.zip` from the release page and unzip it (double-click the file).
 2. Move `Notepad.app` into the Applications folder.
 3. Start it. The first start is blocked, see below.
 
@@ -179,6 +182,28 @@ Zoom applies to all tabs and windows and is not saved; after a restart the text 
 
 Undo, Redo, Cut, Copy, Paste and Select All work as in any Mac app. Each tab keeps its own undo history and scroll position while you switch between tabs.
 
+### Preview
+
+For files Notepad can render, a button appears at the right end of the menu row. It switches the tab between the text (`</>` icon) and the preview (eye icon). The text cannot be edited while the preview is shown. Every tab starts with the text; for other files and for untitled tabs the button is hidden.
+
+The preview is available for these files:
+
+| Files | Shown as |
+| --- | --- |
+| `.md`, `.markdown` | Rendered Markdown with tables, task lists, colored code blocks, formulas between `$…$` and `$$…$$`, and Mermaid diagrams in `mermaid` code blocks. |
+| `.html`, `.htm` | The page itself. Style sheets and images next to the file are loaded. |
+| `.svg` | The image. |
+| `.csv`, `.tsv` | A table. Comma, semicolon and tab are detected as separators. At most 5,000 rows are shown. |
+| `.json`, `.geojson`, `.yaml`, `.yml`, `.toml`, `.xml`, `.plist` | A tree whose branches open and close. |
+| `.ipynb` | The Jupyter notebook with its text, code and saved outputs. Nothing is executed. |
+| `.mmd`, `.mermaid` | A Mermaid diagram. |
+| `.dot`, `.gv` | A Graphviz diagram. |
+| `.diff`, `.patch` | Added lines in green, removed lines in red. |
+
+The colors and the font of the preview follow the appearance mode and the font setting; HTML files keep their own look. The preview is created when you switch to it and shows the text as it is at that moment, saved or not. A file that cannot be parsed, such as broken JSON, shows the error message instead. Links to web pages open in the browser.
+
+The preview can only read files in the folder of the previewed file and its subfolders, and by default it loads nothing from the internet. Two switches in the settings change what HTML files may do, see [Preview settings](#preview-settings).
+
 ### Settings
 
 Open the settings with "Settings" in the menu row of the window, with Notepad > Settings in the Mac menu bar, or with ⌘,. Every change takes effect immediately in all windows and is saved.
@@ -215,6 +240,13 @@ With **Custom Colors** selected, four color buttons appear: Tab Bar, Menu Bar, T
 - **Word Wrap:** when on (the default), long lines wrap at the window edge. When off, lines stay on one line and a horizontal scroll bar appears.
 
 Font, size and word wrap apply to all tabs. They are display settings and are not stored in the text files.
+
+#### Preview settings
+
+- **Run Scripts in HTML Files:** when on (the default), JavaScript in a previewed HTML file runs. Turn it off for files you do not trust.
+- **Load Content from the Internet:** when off (the default), the preview loads nothing from the internet: no remote images, style sheets, fonts or scripts. When on, HTML files and images in Markdown may load them.
+
+Scripts in Markdown files and notebooks never run, whatever these switches say.
 
 #### Keyboard Shortcuts
 
@@ -283,13 +315,18 @@ All source files are in `Notepad/`. The Xcode project picks up every file in tha
 | `NotepadApp.swift` | App entry point: the window scene, the settings scene, and the app delegate that handles the Close Tab shortcut, files passed from Finder, and quitting. |
 | `Workspace.swift` | State shared by all windows: the list of windows, appearance, font, word wrap, zoom, shortcuts and the recently closed files. Reads and writes the preferences. |
 | `WindowStore.swift` | State of one window: its tabs and the selected tab. Opening, saving, closing, tearing off a tab, Find, Go to Line, Time/Date, and the positioning of the window buttons. |
-| `TextDocument.swift` | One tab: file URL, text, and whether it has unsaved changes. |
+| `TextDocument.swift` | One tab: file URL, text, whether it has unsaved changes, and whether it shows the text or the preview. |
 | `ContentView.swift` | Layout of a window: tab bar, menu row, one text view per tab, and the tab search overlay. |
 | `TabBarView.swift` | The tab bar: tab shapes, close and "+" buttons, the drag gesture for tearing off a tab, and the window buttons shown in full screen. |
 | `TabSearchView.swift` | The tab search dropdown. |
-| `MenuRowView.swift` | The "File" and "Settings" row inside the window. |
+| `MenuRowView.swift` | The "File" and "Settings" row inside the window, with the preview button at its right end. |
 | `MenuItems.swift` | The menu commands, defined once and used both in the window's "File" menu and in the Mac menu bar. |
 | `EditorTextView.swift` | Wraps AppKit's `NSTextView` for use in SwiftUI. |
+| `SyntaxPalette.swift` | Calculates the colors the preview uses for code and data from the background and text color. |
+| `PreviewKind.swift` | Which files have a preview and of which kind. |
+| `PreviewView.swift` | Wraps `WKWebView` for the preview and keeps links from navigating away. |
+| `PreviewSchemeHandler.swift` | Serves the preview through its own URL scheme: the tab's text, files from its folder, and the bundled renderer, with the rules for scripts and network access. |
+| `Preview/` | The preview page (`preview.html`, `preview.css`, `preview.js`) and the libraries it uses. |
 | `SettingsView.swift` | The settings window. |
 | `FontFamilyPicker.swift` | The font list that shows each family in its own typeface. |
 | `Shortcuts.swift` | The commands with changeable shortcuts, their defaults, and the fixed macOS shortcuts. |
@@ -302,6 +339,20 @@ All source files are in `Notepad/`. The Xcode project picks up every file in tha
 Comments in the source code are written in German.
 
 Preferences are stored in the macOS defaults system under the bundle identifier `de.mymac.Notepad`. To reset the app to its initial state, quit it and run `defaults delete de.mymac.Notepad`.
+
+## Third-party libraries
+
+These libraries are included unchanged in `Notepad/Preview/`. Their license texts are next to them; Viz.js carries its notice at the top of its file.
+
+| Library | Version | Used for | License |
+| --- | --- | --- | --- |
+| [highlight.js](https://highlightjs.org) | 11.9.0 | Code blocks in the preview | BSD 3-Clause |
+| [markdown-it](https://github.com/markdown-it/markdown-it) | 14.1.0 | Markdown | MIT |
+| [KaTeX](https://katex.org) | 0.19.0 | Formulas | MIT |
+| [Mermaid](https://mermaid.js.org) | 11.15.0 | Diagrams | MIT |
+| [Viz.js](https://viz-js.com) | 3.31.0 | Graphviz diagrams | MIT |
+| [js-yaml](https://github.com/nodeca/js-yaml) | 4.1.1 | YAML | MIT |
+| [smol-toml](https://github.com/squirrelchat/smol-toml) | 1.9.1 | TOML | BSD 3-Clause |
 
 ## License
 

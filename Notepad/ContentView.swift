@@ -37,9 +37,11 @@ struct ContentView: View {
             Divider()
             // Jeder Tab behält seine eigene Textansicht, damit Rückgängig-Verlauf
             // und Scrollposition beim Wechseln erhalten bleiben.
+            let previewTheme = workspace.previewThemeCSS
             ZStack {
                 ForEach(store.documents) { document in
                     let isSelected = document.id == store.selectedID
+                    let mode = document.effectiveMode
                     EditorTextView(
                         document: document,
                         displayFont: workspace.displayFont,
@@ -47,11 +49,26 @@ struct ContentView: View {
                         backgroundColor: workspace.editorBackground,
                         textColor: workspace.editorText,
                         isSelected: isSelected,
-                        isInteractive: !store.isTabSearchPresented
+                        isInteractive: !store.isTabSearchPresented && mode != .rendered
                     )
                     .opacity(isSelected ? 1 : 0)
                     .allowsHitTesting(isSelected)
                     .zIndex(isSelected ? 1 : 0)
+                    // Die Vorschau entsteht beim Umschalten und zeigt den Text von diesem Moment.
+                    if mode == .rendered, let kind = document.previewKind, let url = document.url {
+                        PreviewView(content: PreviewSchemeHandler.Content(
+                            documentURL: url,
+                            kind: kind,
+                            text: document.text,
+                            themeCSS: previewTheme,
+                            allowsScripts: workspace.previewAllowsScripts,
+                            allowsNetwork: workspace.previewAllowsNetwork
+                        ))
+                        .background(Color(nsColor: workspace.editorBackground))
+                        .opacity(isSelected ? 1 : 0)
+                        .allowsHitTesting(isSelected)
+                        .zIndex(isSelected ? 2 : 0)
+                    }
                 }
             }
         }

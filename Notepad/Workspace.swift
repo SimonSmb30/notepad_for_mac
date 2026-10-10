@@ -26,6 +26,9 @@ final class Workspace {
     private(set) var font: NSFont
     private(set) var wordWrap: Bool
     private(set) var zoom: CGFloat = 1
+    /// Ob HTML-Dateien in der Vorschau Skripte ausführen bzw. aus dem Internet laden dürfen.
+    private(set) var previewAllowsScripts: Bool
+    private(set) var previewAllowsNetwork: Bool
     private(set) var recentlyClosed: [ClosedTab]
 
     private(set) var shortcuts: [ShortcutAction: Shortcut]
@@ -54,6 +57,8 @@ final class Workspace {
         static let backgroundColor = "backgroundColor"
         static let textColor = "textColor"
         static let barColor = "barColor"
+        static let previewAllowsScripts = "previewAllowsScripts"
+        static let previewAllowsNetwork = "previewAllowsNetwork"
     }
 
     private static let defaultFont = NSFont(name: "Menlo", size: 13)
@@ -62,8 +67,10 @@ final class Workspace {
 
     private init() {
         let defaults = UserDefaults.standard
-        defaults.register(defaults: [Keys.wordWrap: true])
+        defaults.register(defaults: [Keys.wordWrap: true, Keys.previewAllowsScripts: true])
         wordWrap = defaults.bool(forKey: Keys.wordWrap)
+        previewAllowsScripts = defaults.bool(forKey: Keys.previewAllowsScripts)
+        previewAllowsNetwork = defaults.bool(forKey: Keys.previewAllowsNetwork)
 
         let size = defaults.double(forKey: Keys.fontSize)
         if let name = defaults.string(forKey: Keys.fontName), size > 0,
@@ -308,6 +315,34 @@ final class Workspace {
         palette?.text ?? .textColor
     }
 
+    /// Farben und Schrift des Editors als CSS-Variablen für `Preview/preview.css`.
+    var previewThemeCSS: String {
+        resolved {
+            let palette = SyntaxPalette(background: editorBackground, text: editorText)
+            let isDark = editorBackground.matchingScheme == .dark
+            let family = (displayFont.familyName ?? "").replacingOccurrences(of: "\"", with: "")
+            var values = [
+                "--bg: #\(editorBackground.hexString)",
+                "--text: #\(editorText.hexString)",
+                "--font: \"\(family)\"",
+                "--size: \(Int(displayFont.pointSize))px",
+                "--dark: \(isDark ? 1 : 0)",
+                "color-scheme: \(isDark ? "dark" : "light")",
+            ]
+            for token in SyntaxToken.allCases {
+                values.append("--\(token): #\(palette.color(for: token).hexString)")
+            }
+            return ":root { " + values.joined(separator: "; ") + "; }"
+        }
+    }
+
+    /// Hell und Dunkel nutzen Systemfarben, die erst das Erscheinungsbild auflöst.
+    private func resolved<Value>(_ make: () -> Value) -> Value {
+        var value = make()
+        NSApplication.shared.appearance?.performAsCurrentDrawingAppearance { value = make() }
+        return value
+    }
+
     /// Farbe der Menüzeile und des ausgewählten Tabs, der in sie übergeht.
     var menuBackground: NSColor {
         palette?.menu ?? .textBackgroundColor
@@ -378,6 +413,16 @@ final class Workspace {
     func setWordWrap(_ enabled: Bool) {
         wordWrap = enabled
         UserDefaults.standard.set(enabled, forKey: Keys.wordWrap)
+    }
+
+    func setPreviewAllowsScripts(_ enabled: Bool) {
+        previewAllowsScripts = enabled
+        UserDefaults.standard.set(enabled, forKey: Keys.previewAllowsScripts)
+    }
+
+    func setPreviewAllowsNetwork(_ enabled: Bool) {
+        previewAllowsNetwork = enabled
+        UserDefaults.standard.set(enabled, forKey: Keys.previewAllowsNetwork)
     }
 
     func setFont(_ newFont: NSFont) {
