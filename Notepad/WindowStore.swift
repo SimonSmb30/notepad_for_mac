@@ -182,7 +182,11 @@ final class WindowStore: Identifiable {
         let panel = NSOpenPanel()
         panel.allowsMultipleSelection = true
         panel.canChooseDirectories = false
-        guard panel.runModal() == .OK else { return }
+        // Der Dialog hält seinen Delegate nur schwach.
+        let filter = OpenPanelFilter()
+        panel.delegate = filter
+        let response = withExtendedLifetime(filter) { panel.runModal() }
+        guard response == .OK else { return }
         panel.urls.forEach(open)
     }
 
@@ -366,5 +370,24 @@ final class ActionTarget: NSObject {
 
     @objc func fire() {
         handler()
+    }
+}
+
+/// Graut im Öffnen-Dialog aus, was sicher kein Text ist. Unbekannte Typen bleiben
+/// wählbar, weil Text in beliebigen Dateien stecken kann (`.env`, `Dockerfile`, …).
+private final class OpenPanelFilter: NSObject, NSOpenSavePanelDelegate {
+    private static let nonText: [UTType] = [
+        .image, .audiovisualContent, .archive, .diskImage, .executable, .pdf,
+        .compositeContent, .spreadsheet, .presentation, .font, .database,
+    ]
+
+    func panel(_ sender: Any, shouldEnable url: URL) -> Bool {
+        guard let values = try? url.resourceValues(forKeys: [.contentTypeKey, .isDirectoryKey, .isPackageKey]),
+              let type = values.contentType else { return true }
+        // Ordner bleiben offen, damit man hineinnavigieren kann.
+        if values.isDirectory == true, values.isPackage != true { return true }
+        // SVG, RTF oder HTML sind Bild bzw. Dokument und trotzdem Text.
+        if type.conforms(to: .text) { return true }
+        return !Self.nonText.contains { type.conforms(to: $0) }
     }
 }
